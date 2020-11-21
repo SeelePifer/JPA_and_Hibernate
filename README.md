@@ -3,7 +3,7 @@
 ## Comenzando 🚀
 
 _Este proyecto es desarrollado por Luis Felipe Taddey Espinosa, en la cual demuestra sus conocimientos en JPA y Hibernate. Desarrollado en Spring Framework 2.4.x_
-
+_Dependencia de Web Started, JPA, H2 database y Spring DevTools_
 ### ¿Qué conocimientos tiene? 🔧
 Relación uno a uno , relación uno a muchos y de muchos a muchos, con JPQL y relación Entidad-Repository.
 
