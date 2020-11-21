@@ -6,6 +6,7 @@ _Este proyecto es desarrollado por Luis Felipe Taddey Espinosa, en la cual demue
 _Dependencia de Web Started, JPA, H2 database y Spring DevTools_
 ### ¿Qué conocimientos tiene? 🔧
 Relación uno a uno , relación uno a muchos y de muchos a muchos, con JPQL y relación Entidad-Repository.
+JUnitTests, para el buen funcionamiento y pruebas unitarias del proyecto.(Apartado <raiz_proyecto/src/test/java/com/practicando/jpa/demo>)
 
 ## Ejecutando las pruebas ⚙️
 _Ingresar a http://localhost:8080/h2-console y hacer las consultas respectivas y verificar las relaciones_
