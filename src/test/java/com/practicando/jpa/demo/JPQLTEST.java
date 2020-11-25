@@ -8,6 +8,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.practicando.jpa.demo.entity.Course;
 import com.practicando.jpa.demo.repository.CourseRepository;
@@ -48,5 +52,19 @@ class JPQLTEST {
 				,Course.class);
 		List resultList = createQuery.getResultList();
 		logger.info("Select c from Course c where name like'%100 Steps' -> {}",resultList);
+	}
+	
+	@Test
+	void criteria_API() {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+		
+		Root<Course> courseRoot = cq.from(Course.class);
+		
+		TypedQuery<Course> query = em.createQuery(cq.select(courseRoot));
+		
+		List<Course> resultList = query.getResultList();
+		logger.info("Details of all courses ->{}",resultList);
+		
 	}
 }

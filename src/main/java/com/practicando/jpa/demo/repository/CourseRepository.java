@@ -16,35 +16,41 @@ import com.practicando.jpa.demo.entity.Review;
 @Repository
 @Transactional
 public class CourseRepository  {
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	EntityManager em;
-	
+
 	public Course findById(Long id) {
 		return em.find(Course.class, id);
 	}
-	public void deleteById(long id) {
-		Course course=findById(id);
-		 em.remove(course);
-	}
+
 	public Course save(Course course) {
-		if(course.getId()==null) {
-			//Insert
+
+		if (course.getId() == null) {
 			em.persist(course);
-		}else {
-			//Update
+		} else {
 			em.merge(course);
 		}
+
 		return course;
 	}
+
+	public void deleteById(Long id) {
+		Course course = findById(id);
+		em.remove(course);
+	}
+
 	public void playWithEntityManager() {
-		Course course1 = new Course("Web Services in 100 steps");
+		Course course1 = new Course("Web Services in 100 Steps");
 		em.persist(course1);
 		
-		Course course2 = findById(1001L);
-		course2.setName("JPA in 50 steps-Updated");
+		Course course2 = findById(10001L);
+		
+		course2.setName("JPA in 50 Steps - Updated");
+		
 	}
-	//public Course save(Course course)-->insert or update
+
 	public void addHardcodedReviewsForCourse() {
 		//get the course 10003
 		Course course = findById(10003L);
@@ -66,16 +72,16 @@ public class CourseRepository  {
 		em.persist(review2);
 	}
 	
-	public void addReviewsForCourse(Long courseId, List<Review> reviews) {    
-	    Course course = findById(courseId);
-	    logger.info("course.getReviews() -> {}", course.getReviews());
-	    for(Review review:reviews)
-	    {     
-	      //setting the relationship
-	      course.addReview(review);
-	      review.setCourse(course);
-	      em.persist(review);
-	    }
+	public void addReviewsForCourse(Long courseId, List<Review> reviews) {		
+		Course course = findById(courseId);
+		logger.info("course.getReviews() -> {}", course.getReviews());
+		for(Review review:reviews)
+		{			
+			//setting the relationship
+			course.addReview(review);
+			review.setCourse(course);
+			em.persist(review);
+		}
 	}
 	}
 	
